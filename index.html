@@ -1,5 +1,20 @@
-<base target="htmz" />
-<link rel="stylesheet" href="style.css" />
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>title</title>
+  <meta name="description" content="description">
+  <!-- Recommended minimum -->
+  <meta property="og:title" content="title">
+  <meta property="og:description" content="description">
+  <meta property="og:image" content="img.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="style.css"/>
+  <base target="htmz" />
+</head>
+
+<body>
 
 <h1>Tabs</h1>
 
@@ -16,3 +31,4 @@
 <div id="my-tab-panel" role="tabpanel"></div>
 
 <iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))"></iframe>
+</body>

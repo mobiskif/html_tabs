@@ -1,0 +1,77 @@
+openapi: 3.0.3
+info:
+  title: Apartments for Rent API
+  version: 1.0.0
+servers:
+  - url: https://example.com
+paths:
+  /api/v1/apartments:
+    get:
+      summary: List apartments
+      parameters:
+        - in: query
+          name: city
+          schema: { type: string }
+        - in: query
+          name: rooms
+          schema: { type: integer, minimum: 1 }
+        - in: query
+          name: max_price
+          schema: { type: number, minimum: 0 }
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create apartment listing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApartmentCreate'
+      responses:
+        '201':
+          description: Created
+  /api/v1/apartments/{id}:
+    get:
+      summary: Apartment details
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: OK }
+        '404': { description: Not Found }
+    patch:
+      summary: Update apartment listing
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Updated }
+    delete:
+      summary: Archive listing
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        '204': { description: Deleted }
+components:
+  schemas:
+    ApartmentCreate:
+      type: object
+      required: [title, description, city, address, rooms, area_m2, monthly_price_eur, owner_email]
+      properties:
+        title: { type: string, maxLength: 120 }
+        description: { type: string }
+        city: { type: string }
+        address: { type: string }
+        rooms: { type: integer, minimum: 1 }
+        area_m2: { type: number, minimum: 1 }
+        monthly_price_eur: { type: number, minimum: 1 }
+        owner_email: { type: string, format: email }

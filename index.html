@@ -1,29 +1,89 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>title</title>
-  <meta name="description" content="description">
-  <link rel="stylesheet" href="style.css"/>
-  <base target="htmz" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apartments for Rent — Internet Market</title>
+  <meta name="description" content="Internet-market for apartments for rent built with HTML5, PostgreSQL, and REST.">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <header class="site-header">
+    <h1>Apartments for Rent</h1>
+    <p class="tagline">Simple internet-market: HTML5 interface + REST API + PostgreSQL storage.</p>
+  </header>
 
-<h1>Tabs</h1>
+  <main class="layout">
+    <section class="card">
+      <h2>Find apartment</h2>
+      <form action="/apartments" method="get">
+        <label for="city">City</label>
+        <input id="city" name="city" type="text" placeholder="e.g. Berlin" required>
 
-<p>This is a DIV tabbed UI example. Click on any of the tabs below.</p>
-<p>The structure is very similar to an <a href="iframe.html" target="_blank">iframe implementation</a>, except now the container can have a dynamic size and the content uses the same context and styles as the main page.</p>
-<p>Back navigation & history works. Because these are native HTML links (&lt;a&gt;) that work normally. No listeners, no JS, no hijacking of normal web browser web browsing.</p>
+        <label for="rooms">Rooms</label>
+        <input id="rooms" name="rooms" type="number" min="1" max="10" value="1">
 
-<div role="tablist">
-  <a class="tab" href="dog.html#my-tab-panel">Dog</a>
-  <a class="tab" href="cat.html#my-tab-panel">Cat</a>
-  <a class="tab" href="horse.html#my-tab-panel">Horse</a>
-</div>
+        <label for="max_price">Max price (EUR/month)</label>
+        <input id="max_price" name="max_price" type="number" min="100" step="50" value="1500">
 
-<div id="my-tab-panel" role="tabpanel"></div>
+        <button type="submit">Search</button>
+      </form>
+    </section>
 
-<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))"></iframe>
+    <section class="card">
+      <h2>Publish new listing</h2>
+      <form action="/api/v1/apartments" method="post">
+        <label for="title">Title</label>
+        <input id="title" name="title" type="text" minlength="10" maxlength="120" required>
+
+        <label for="owner_email">Contact email</label>
+        <input id="owner_email" name="owner_email" type="email" required>
+
+        <label for="price">Price (EUR/month)</label>
+        <input id="price" name="price" type="number" min="100" step="50" required>
+
+        <label for="address">Address</label>
+        <input id="address" name="address" type="text" minlength="8" required>
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="5" minlength="40" required></textarea>
+
+        <button type="submit">Create listing</button>
+      </form>
+    </section>
+
+    <section class="card full-width">
+      <h2>Featured listings</h2>
+      <article>
+        <h3>Modern Studio near Central Park</h3>
+        <p>City: New York • Rooms: 1 • 1,900 EUR/month</p>
+      </article>
+      <article>
+        <h3>Sunny 2-bedroom in Mitte</h3>
+        <p>City: Berlin • Rooms: 2 • 1,650 EUR/month</p>
+      </article>
+      <article>
+        <h3>Family flat with balcony</h3>
+        <p>City: Prague • Rooms: 3 • 1,250 EUR/month</p>
+      </article>
+    </section>
+
+    <section class="card full-width">
+      <h2>REST endpoints</h2>
+      <table>
+        <thead>
+          <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>GET</td><td>/api/v1/apartments</td><td>List apartments with filters: city, rooms, max_price.</td></tr>
+          <tr><td>GET</td><td>/api/v1/apartments/{id}</td><td>Get apartment details by id.</td></tr>
+          <tr><td>POST</td><td>/api/v1/apartments</td><td>Create listing from HTML form or JSON body.</td></tr>
+          <tr><td>PATCH</td><td>/api/v1/apartments/{id}</td><td>Update listing fields.</td></tr>
+          <tr><td>DELETE</td><td>/api/v1/apartments/{id}</td><td>Archive listing.</td></tr>
+        </tbody>
+      </table>
+      <p>See full PostgreSQL schema in <a href="schema.sql">schema.sql</a> and API contract in <a href="openapi.yaml">openapi.yaml</a>.</p>
+    </section>
+  </main>
 </body>
+</html>

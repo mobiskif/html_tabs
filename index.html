@@ -10,13 +10,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="bg-glow bg-glow-one" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-two" aria-hidden="true"></div>
+
   <header class="site-header">
+    <p class="eyebrow">Smart Rental Platform</p>
     <h1>Apartments for Rent</h1>
-    <p class="tagline">Simple internet-market: HTML5 interface + REST API + PostgreSQL storage.</p>
+    <p class="tagline">A modern internet-market with a clean HTML5 interface, REST API, and PostgreSQL storage.</p>
+    <div class="hero-metrics">
+      <div><strong>1200+</strong><span>Active listings</span></div>
+      <div><strong>64</strong><span>Cities covered</span></div>
+      <div><strong>&lt;24h</strong><span>Average response</span></div>
+    </div>
   </header>
 
   <main class="layout">
-    <section class="card">
+    <section class="card glass-card">
       <h2>Find apartment</h2>
       <form action="/apartments" method="get" autocomplete="off">
         <label for="city">City</label>
@@ -28,11 +37,11 @@
         <label for="max_price">Max price (EUR/month)</label>
         <input id="max_price" name="max_price" type="number" min="100" step="50" value="1500">
 
-        <button type="submit">Search</button>
+        <button type="submit">Search apartments</button>
       </form>
     </section>
 
-    <section class="card">
+    <section class="card glass-card">
       <h2>Publish new listing</h2>
       <form action="/api/v1/apartments" method="post" autocomplete="off">
         <label for="title">Title</label>
@@ -56,18 +65,20 @@
 
     <section class="card full-width">
       <h2>Featured listings</h2>
-      <article>
-        <h3>Modern Studio near Central Park</h3>
-        <p>City: New York • Rooms: 1 • 1,900 EUR/month</p>
-      </article>
-      <article>
-        <h3>Sunny 2-bedroom in Mitte</h3>
-        <p>City: Berlin • Rooms: 2 • 1,650 EUR/month</p>
-      </article>
-      <article>
-        <h3>Family flat with balcony</h3>
-        <p>City: Prague • Rooms: 3 • 1,250 EUR/month</p>
-      </article>
+      <div class="listing-grid">
+        <article>
+          <h3>Modern Studio near Central Park</h3>
+          <p>City: New York • Rooms: 1 • 1,900 EUR/month</p>
+        </article>
+        <article>
+          <h3>Sunny 2-bedroom in Mitte</h3>
+          <p>City: Berlin • Rooms: 2 • 1,650 EUR/month</p>
+        </article>
+        <article>
+          <h3>Family flat with balcony</h3>
+          <p>City: Prague • Rooms: 3 • 1,250 EUR/month</p>
+        </article>
+      </div>
     </section>
 
     <section class="card full-width">

@@ -226,3 +226,12 @@ th {
     grid-template-columns: 1fr;
   }
 }
+
+
+.tab-panel-frame {
+  width: 100%;
+  min-height: 16rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}

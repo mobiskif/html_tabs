@@ -15,4 +15,15 @@ CREATE TABLE IF NOT EXISTS apartment_listing (
 
 CREATE INDEX IF NOT EXISTS idx_apartment_city ON apartment_listing (city);
 CREATE INDEX IF NOT EXISTS idx_apartment_price ON apartment_listing (monthly_price_eur);
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_constraint WHERE conname = 'chk_owner_email_format'
+  ) THEN
+    ALTER TABLE apartment_listing
+      ADD CONSTRAINT chk_owner_email_format
+      CHECK (owner_email ~* '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$');
+  END IF;
+END;
+$$;
 CREATE INDEX IF NOT EXISTS idx_apartment_rooms ON apartment_listing (rooms);

@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Apartments for Rent — Internet Market</title>
   <meta name="description" content="Internet-market for apartments for rent built with HTML5, PostgreSQL, and REST.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,8 +27,7 @@
   <main class="layout">
     <section class="card glass-card">
       <h2>Find apartment</h2>
-      <p class="card-subtitle">Filter by city, rooms, and monthly budget.</p>
-      <form action="/apartments" method="get">
+      <form action="/apartments" method="get" autocomplete="off">
         <label for="city">City</label>
         <input id="city" name="city" type="text" placeholder="e.g. Berlin" required>
 
@@ -42,8 +43,7 @@
 
     <section class="card glass-card">
       <h2>Publish new listing</h2>
-      <p class="card-subtitle">Reach thousands of renters in minutes.</p>
-      <form action="/api/v1/apartments" method="post">
+      <form action="/api/v1/apartments" method="post" autocomplete="off">
         <label for="title">Title</label>
         <input id="title" name="title" type="text" minlength="10" maxlength="120" required>
 

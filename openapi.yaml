@@ -4,6 +4,8 @@ info:
   version: 1.0.0
 servers:
   - url: https://example.com
+security:
+  - bearerAuth: []
 paths:
   /api/v1/apartments:
     get:
@@ -21,6 +23,8 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
     post:
       summary: Create apartment listing
       requestBody:
@@ -32,6 +36,10 @@ paths:
       responses:
         '201':
           description: Created
+        '400':
+          description: Validation Error
+        '401':
+          description: Unauthorized
   /api/v1/apartments/{id}:
     get:
       summary: Apartment details
@@ -42,6 +50,7 @@ paths:
           schema: { type: integer }
       responses:
         '200': { description: OK }
+        '401': { description: Unauthorized }
         '404': { description: Not Found }
     patch:
       summary: Update apartment listing
@@ -52,6 +61,8 @@ paths:
           schema: { type: integer }
       responses:
         '200': { description: Updated }
+        '400': { description: Validation Error }
+        '401': { description: Unauthorized }
     delete:
       summary: Archive listing
       parameters:
@@ -61,7 +72,13 @@ paths:
           schema: { type: integer }
       responses:
         '204': { description: Deleted }
+        '401': { description: Unauthorized }
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     ApartmentCreate:
       type: object

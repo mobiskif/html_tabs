@@ -101,3 +101,12 @@ article {
 article:last-child {
   border-bottom: 0;
 }
+
+
+.tab-panel-frame {
+  width: 100%;
+  min-height: 16rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}

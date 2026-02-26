@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="style.css" />
 
 <h1>Tabs</h1>
@@ -13,6 +12,14 @@
   <a class="tab" href="horse.html" target="my-tab-panel">Horse</a>
 </div>
 
-
-
-<iframe marginheight="0" marginwidth="0" name="my-tab-panel" role="tabpanel" onload="style.height = contentWindow.document.documentElement.scrollHeight + 'px';"></iframe>
+<iframe
+  title="Animal tab panel"
+  name="my-tab-panel"
+  role="tabpanel"
+  marginheight="0"
+  marginwidth="0"
+  loading="lazy"
+  referrerpolicy="no-referrer"
+  sandbox="allow-same-origin"
+  class="tab-panel-frame"
+></iframe>
